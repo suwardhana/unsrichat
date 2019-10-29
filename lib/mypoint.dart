@@ -16,68 +16,69 @@ class _MyPoinState extends State<MyPoin> {
       // shrinkWrap: true,
       padding: EdgeInsets.all(15.0),
       children: <Widget>[
-        Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      "Petunjuk",
-                      style: TextStyle(
-                          fontSize: 30.0,
-                          color: const Color(0xFF000000),
-                          fontWeight: FontWeight.w500,
-                          fontFamily: "Roboto"),
-                    )
-                  ]),
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    _gambar(myPoint),
-                  ]),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      myPointWidget(),
-                    ]),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: <Widget>[
-                    Text("Tiap chat, akan menambah 1 poin"),
-                    Text(
-                        "jika login dalam 2 hari berturut-turut , akan menambah 5 poin"),
-                    Text("jika memberikan data lokasi, akan menambah 5 poin"),
-                  ],
-                ),
-              ),
-              Divider(height: 15.0),
-              Column(
-                children: <Widget>[
-                  _badgeImage2(1),
-                  _badgeImage2(2),
-                  _badgeImage2(3),
-                  _badgeImage2(4),
-                  _badgeImage2(5),
-                  _badgeImage2(6),
-                  _badgeImage2(7),
-                  _badgeImage2(8),
-                  _badgeImage2(9),
-                ],
-              ),
-            ])
+              Text(
+                "Petunjuk",
+                style: TextStyle(
+                    fontSize: 30.0,
+                    color: const Color(0xFF000000),
+                    fontWeight: FontWeight.w500,
+                    fontFamily: "Roboto"),
+              )
+            ]),
+        Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              _gambar(myPoint),
+            ]),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                myPointWidget(),
+              ]),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: <Widget>[
+              Text("Tiap chat, akan menambah 1 poin"),
+              Text(
+                  "jika login dalam 2 hari berturut-turut , akan menambah 5 poin"),
+              Text(
+                  "jika memberikan data lokasi, dan sedang berada di UNSRI Palembang, jalan Palembang-Indralaya, atau UNSRI Indralaya akan menambah 5 poin"),
+            ],
+          ),
+        ),
+        Divider(height: 15.0),
+        Column(
+          children: <Widget>[
+            Text("Keterangan Badge",
+                style: TextStyle(
+                    fontSize: 20.0,
+                    color: const Color(0xFF000000),
+                    fontWeight: FontWeight.w300,
+                    fontFamily: "Roboto")),
+            _badgeImage2(1),
+            _badgeImage2(2),
+            _badgeImage2(3),
+            _badgeImage2(4),
+            _badgeImage2(5),
+            _badgeImage2(6),
+            _badgeImage2(7),
+            _badgeImage2(8),
+            _badgeImage2(9),
+          ],
+        )
       ],
     ));
   }
