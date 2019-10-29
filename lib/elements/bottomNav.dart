@@ -9,24 +9,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
 final _auth = FirebaseAuth.instance;
 GoogleSignInAccount user = _googleSignIn.currentUser;
-
-Future<FirebaseUser> xhandleSignIn() async {
-  // poinLogin();
-  if (user == null) user = await _googleSignIn.signIn();
-  final GoogleSignInAuthentication googleAuth = await user.authentication;
-
-  final AuthCredential credential = GoogleAuthProvider.getCredential(
-    accessToken: googleAuth.accessToken,
-    idToken: googleAuth.idToken,
-  );
-
-  final FirebaseUser user2 =
-      (await _auth.signInWithCredential(credential)).user;
-  print("signed in " + user2.displayName);
-  await setUsername(user2.displayName);
-  await setUserfoto(user2.photoUrl);
-  return user2;
-}
+String pageTitle = "Unsri Chat";
+String username = "";
+String _email = "";
+String _photoUrl = "https://image.flaticon.com/icons/png/128/23/23171.png";
 
 Future<void> handleSignIn() async {
   try {
@@ -44,15 +30,18 @@ Future<void> handleSignIn() async {
     print("signed in " + user2.displayName);
     await setUsername(user2.displayName);
     await setUserfoto(user2.photoUrl);
+    username = user2.displayName;
+    _email = user2.email;
+    _photoUrl = user2.photoUrl;
     return user2;
   } catch (error) {
     print(error);
   }
 }
 
-setUsername(String _username) async {
+Future<void> setUsername(String _x) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  await prefs.setString('username', _username);
+  await prefs.setString('username', _x);
 }
 
 setUserfoto(String _foto) async {
@@ -62,7 +51,8 @@ setUserfoto(String _foto) async {
 
 getUsername() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  return prefs.getString('username').toString();
+  String a = prefs.getString('username');
+  return a.toString();
 }
 
 class BottomWidget extends StatefulWidget {
@@ -92,19 +82,43 @@ class _BottomWidgetState extends State<BottomWidget> {
   ];
 
   void _onItemTapped(int index) {
+    var title = ["UNSRI Chat", "Location History", "Help"];
     setState(() {
       _selectedIndex = index;
+      pageTitle = title[index];
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    final drawerHeader = UserAccountsDrawerHeader(
+      accountName: Text(username),
+      accountEmail: Text(_email),
+      currentAccountPicture: CircleAvatar(
+          backgroundImage: NetworkImage(_photoUrl) ?? FlutterLogo(size: 42.0)),
+    );
+    final drawerItems = ListView(
+      children: <Widget>[
+        drawerHeader,
+        ListTile(
+          title: Text('To page 1'),
+          onTap: () {},
+        ),
+        ListTile(
+          title: Text('other drawer item'),
+          onTap: () {},
+        ),
+      ],
+    );
     return Scaffold(
       appBar: AppBar(
-        title: const Text('GPS Log PALINDRA'),
+        title: Text(pageTitle),
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
+      ),
+      drawer: Drawer(
+        child: drawerItems,
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
@@ -129,59 +143,14 @@ class _BottomWidgetState extends State<BottomWidget> {
   }
 }
 
-class TesWidget extends StatefulWidget {
-  TesWidget({Key key}) : super(key: key);
-
-  @override
-  _TesWidgetState createState() => _TesWidgetState();
-}
-
-class _TesWidgetState extends State<TesWidget> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(
-            'You have pushed the button this many times:',
-          ),
-          Text(
-            '$_counter',
-            style: Theme.of(context).textTheme.display1,
-          ),
-          RaisedButton(
-            onPressed: () async {
-              poinLogin();
-            },
-            child: const Text('cek login'),
-          ),
-          RaisedButton(
-            onPressed: () async {
-              _incrementCounter();
-            },
-            child: const Text('+1'),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 poinLogin() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   var dateToday = DateTime.now();
-  var dateFromPref =
-      DateTime.parse(prefs.getString('lastlogin').toString() ?? dateToday);
-  // var dateFromPref = DateTime.parse("2019-07-20 20:18:04Z");
+  var lastlogin = prefs.getString('lastlogin').toString();
+  if (lastlogin == "null") {
+    lastlogin = dateToday.toString();
+  }
+  var dateFromPref = DateTime.parse(lastlogin);
   var selisih = dateFromPref.difference(dateToday).inDays;
   if (selisih == 1) {
     _poinPlus(howMuch: 5);
