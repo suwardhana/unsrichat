@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../fchat.dart';
 import '../mypoint.dart';
@@ -42,6 +43,15 @@ Future<void> handleSignIn() async {
 Future<void> setUsername(String _x) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   await prefs.setString('username', _x);
+}
+
+Future<void> _logOut() async {
+  user = null;
+  _googleSignIn.disconnect();
+}
+
+Future<void> pop() async {
+  await SystemChannels.platform.invokeMethod<void>('SystemNavigator.pop');
 }
 
 setUserfoto(String _foto) async {
@@ -105,8 +115,11 @@ class _BottomWidgetState extends State<BottomWidget> {
           onTap: () {},
         ),
         ListTile(
-          title: Text('other drawer item'),
-          onTap: () {},
+          title: Text('logout'),
+          onTap: () {
+            _logOut();
+            pop();
+          },
         ),
       ],
     );
