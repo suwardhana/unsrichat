@@ -250,6 +250,14 @@ class ChatScreenState extends State<ChatScreen> {
     });
     _poinPlus(howMuch: 1);
     _sendMessage(text: text);
+    final snackBar = SnackBar(
+      content: Text('Yay! +1 point!'),
+      duration: Duration(milliseconds: 400),
+    );
+
+    // Find the Scaffold in the widget tree and use
+    // it to show a SnackBar.
+    Scaffold.of(context).showSnackBar(snackBar);
   }
 
   _sendMessage({String text}) async {
