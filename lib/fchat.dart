@@ -86,8 +86,6 @@ class ChatScreenState extends State<ChatScreen> {
   final List<Position> _positions = <Position>[];
 
   void _toggleListening() {
-    debugPrint("button pushed");
-
     if (_positionStreamSubscription == null) {
       debugPrint("location listening");
       const LocationOptions locationOptions =
@@ -131,6 +129,7 @@ class ChatScreenState extends State<ChatScreen> {
       [-3.200429, 104.656830, "Simpang Timbangan"],
       [-3.210573, 104.648692, "Gerbang Unsri Indralaya"],
       [-3.2200783, 104.6512259, "Fasilkom Indralaya"],
+      [-2.985083, 104.7323358, "Fasilkom Palembang"],
     ];
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -203,7 +202,10 @@ class ChatScreenState extends State<ChatScreen> {
       _positionStreamSubscription.isPaused);
 
   Widget _buildButtonText() {
-    return Text(_isListening() ? 'Stop listening' : 'Start listening');
+    return Text(
+      _isListening() ? 'Stop' : 'Give location information',
+      style: TextStyle(color: Colors.white),
+    );
   }
 
   Color _determineButtonColor() {
