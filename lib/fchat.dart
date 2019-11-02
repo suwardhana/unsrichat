@@ -147,6 +147,14 @@ class ChatScreenState extends State<ChatScreen> {
           'longitude': _position.longitude,
         });
         _poinPlus(howMuch: 5);
+        final snackBar = SnackBar(
+          content: Text('Yay! +5 point!'),
+          duration: Duration(milliseconds: 1000),
+        );
+
+        // Find the Scaffold in the widget tree and use
+        // it to show a SnackBar.
+        Scaffold.of(context).showSnackBar(snackBar);
       }
     }
     // debugPrint("pushlocationfun");
