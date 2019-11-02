@@ -111,10 +111,6 @@ class _BottomWidgetState extends State<BottomWidget> {
       children: <Widget>[
         drawerHeader,
         ListTile(
-          title: Text('To page 1'),
-          onTap: () {},
-        ),
-        ListTile(
           title: Text('logout'),
           onTap: () {
             _logOut();
