@@ -263,7 +263,7 @@ class ChatScreenState extends State<ChatScreen> {
       duration: Duration(milliseconds: 400),
     );
 
-    // Find the Scaffold in the widget tree and use
+    // Find the   Scaffold in the widget tree and use
     // it to show a SnackBar.
     Scaffold.of(context).showSnackBar(snackBar);
   }
