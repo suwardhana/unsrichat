@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 String myPoint = "0";
 
@@ -51,9 +52,10 @@ class _MyPoinState extends State<MyPoin> {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: <Widget>[
-              Text("Tiap chat, akan menambah 1 poin"),
               Text(
-                  "jika login dalam 2 hari berturut-turut , akan menambah 5 poin"),
+                  "kamu bisa dapat satu poin setiap kamu menggunakan fitur chat"),
+              Text(
+                  "jika login dalam 2 hari berturut-turut , kamu akan mendapatkan 5 poin"),
               Text(
                   "jika memberikan data lokasi, dan sedang berada di UNSRI Palembang, jalan Palembang-Indralaya, atau UNSRI Indralaya akan menambah 5 poin"),
             ],
@@ -77,8 +79,12 @@ class _MyPoinState extends State<MyPoin> {
             _badgeImage2(7),
             _badgeImage2(8),
             _badgeImage2(9),
+            RaisedButton(
+              onPressed: () => launch('https://forms.gle/5KDVkkgBLcDGx8Ju5'),
+              child: const Text('Isi Survey'),
+            ),
           ],
-        )
+        ),
       ],
     ));
   }
@@ -126,7 +132,7 @@ Widget _badgeImage2(int level) {
   var v2 = v + 9;
   String v3 = v.toString() + " - " + v2.toString();
   if (level < 2) {
-    v3 = "1 - 19";
+    v3 = "1 - 49";
   }
   if (level > 8) {
     v3 = "    > 90";
