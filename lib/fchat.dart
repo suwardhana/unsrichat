@@ -23,7 +23,7 @@ class ChatMessage extends StatelessWidget {
   Widget _gambar(String poin) {
     int poin2 = int.parse(poin);
     var level;
-    level = poin2 / 10;
+    level = poin2 / 50;
     level = level.toInt();
     if (level < 1) {
       level = 1;
@@ -55,13 +55,17 @@ class ChatMessage extends StatelessWidget {
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      _gambar(snapshot.value['currentPoint'].toString()),
+                      Container(
+                        margin: const EdgeInsets.only(right: 3.0),
+                        child:
+                            _gambar(snapshot.value['currentPoint'].toString()),
+                      ),
                       Text(snapshot.value['senderName'],
                           style: Theme.of(context).textTheme.subhead),
                     ],
                   ),
                   Container(
-                    margin: const EdgeInsets.only(top: 5.0),
+                    margin: const EdgeInsets.only(top: 5.0, left: 3.0),
                     child: Text(snapshot.value['text']),
                   ),
                 ],
@@ -117,7 +121,7 @@ class ChatScreenState extends State<ChatScreen> {
 
   Future<Null> _pushLocation(Position _position) async {
     List titik = [
-      [-2.9900519, 104.7217054, "rumahku"],
+      // [-2.9900519, 104.7217054, "rumahku"],
       [-2.986844, 104.732186, "Gerbang Unsri Palembang"],
       [-2.989663, 104.735224, "Simpang Padang Selasa"],
       [-2.992716, 104.726864, "Simpang SMA 10"],
