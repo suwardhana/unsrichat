@@ -92,7 +92,7 @@ class _BottomWidgetState extends State<BottomWidget> {
   ];
 
   void _onItemTapped(int index) {
-    var title = ["UNSRI Chat", "Location History", "Help"];
+    var title = ["UnsriChat", "Riwayat Lokasi", "Bantuan"];
     setState(() {
       _selectedIndex = index;
       pageTitle = title[index];
@@ -111,9 +111,9 @@ class _BottomWidgetState extends State<BottomWidget> {
       children: <Widget>[
         drawerHeader,
         ListTile(
-          title: Text('logout'),
+          title: Text('Keluar'),
           onTap: () {
-            _logOut();
+            // _logOut();
             pop();
           },
         ),
@@ -133,15 +133,15 @@ class _BottomWidgetState extends State<BottomWidget> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.chat),
-            title: Text('Chat Room'),
+            title: Text('Chat'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.location_on),
-            title: Text('Location History'),
+            title: Text('Riwayat Lokasi'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.help_outline),
-            title: Text('Help'),
+            title: Text('Bantuan'),
           ),
         ],
         currentIndex: _selectedIndex,
