@@ -45,10 +45,10 @@ Future<void> setUsername(String _x) async {
   await prefs.setString('username', _x);
 }
 
-Future<void> _logOut() async {
-  user = null;
-  _googleSignIn.disconnect();
-}
+// Future<void> _logOut() async {
+//   user = null;
+//   _googleSignIn.disconnect();
+// }
 
 Future<void> pop() async {
   await SystemChannels.platform.invokeMethod<void>('SystemNavigator.pop');
