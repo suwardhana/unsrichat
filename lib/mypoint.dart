@@ -55,9 +55,9 @@ class _MyPoinState extends State<MyPoin> {
               Text(
                   "kamu bisa dapat satu poin setiap kamu menggunakan fitur chat"),
               Text(
-                  "jika login dalam 2 hari berturut-turut , kamu akan mendapatkan 5 poin"),
+                  "Jika login dalam 2 hari berturut-turut , kamu akan mendapatkan 5 poin"),
               Text(
-                  "jika memberikan data lokasi, dan sedang berada di UNSRI Palembang, jalan Palembang-Indralaya, atau UNSRI Indralaya akan menambah 5 poin"),
+                  "Klik tombol give location information ketika kamu sedang berada di wilayah UNSRI Palembang, jalan Palembang-indralaya atau UNSRI indralaya untuk mendapatkan 5 poin disetiap posisi"),
             ],
           ),
         ),
@@ -104,7 +104,7 @@ class _MyPoinState extends State<MyPoin> {
   Widget _gambar(String poin) {
     int poin2 = int.parse(poin);
     var level;
-    level = poin2 / 10;
+    level = poin2 / 20;
     level = level.toInt();
     if (level < 1) {
       level = 1;
@@ -128,14 +128,14 @@ class _MyPoinState extends State<MyPoin> {
 }
 
 Widget _badgeImage2(int level) {
-  var v = ((level) * 10);
+  var v = ((level) * 20);
   var v2 = v + 9;
   String v3 = v.toString() + " - " + v2.toString();
   if (level < 2) {
-    v3 = "1 - 49";
+    v3 = "1 - 39";
   }
   if (level > 8) {
-    v3 = "    > 90";
+    v3 = "    > 180";
   }
   return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
