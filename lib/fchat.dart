@@ -23,7 +23,7 @@ class ChatMessage extends StatelessWidget {
   Widget _gambar(String poin) {
     int poin2 = int.parse(poin);
     var level;
-    level = poin2 / 50;
+    level = poin2 / 20;
     level = level.toInt();
     if (level < 1) {
       level = 1;
@@ -101,14 +101,14 @@ class ChatScreenState extends State<ChatScreen> {
           _positions.add(position);
         });
         _pushLocation(position);
-        debugPrint("location harusnya sudah push");
-        debugPrint(
-            position.latitude.toString() + "," + position.longitude.toString());
-        debugPrint("xx");
+        // debugPrint("location harusnya sudah push");
+        // debugPrint(
+        //     position.latitude.toString() + "," + position.longitude.toString());
+        // debugPrint("xx");
       });
       _positionStreamSubscription.pause();
     }
-    debugPrint("location harusnya sudah listening");
+    // debugPrint("location harusnya sudah listening");
 
     setState(() {
       if (_positionStreamSubscription.isPaused) {
@@ -155,9 +155,6 @@ class ChatScreenState extends State<ChatScreen> {
           content: Text('Yay! +5 point!'),
           duration: Duration(milliseconds: 1000),
         );
-
-        // Find the Scaffold in the widget tree and use
-        // it to show a SnackBar.
         Scaffold.of(context).showSnackBar(snackBar);
       }
     }
@@ -266,9 +263,6 @@ class ChatScreenState extends State<ChatScreen> {
       content: Text('Yay! +1 point!'),
       duration: Duration(milliseconds: 400),
     );
-
-    // Find the   Scaffold in the widget tree and use
-    // it to show a SnackBar.
     Scaffold.of(context).showSnackBar(snackBar);
   }
 
